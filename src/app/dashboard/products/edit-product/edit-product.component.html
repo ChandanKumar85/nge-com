@@ -1,0 +1,133 @@
+<mat-card class="header d-flex align-items-center">
+    <button mat-icon-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Edit Product</h2>
+</mat-card>
+<div class="body-scroll mt-2">
+    <form autocomplete="off" [formGroup]="addProductForm" (ngSubmit)="onSubmit(addProductForm.value)">
+        <div class="form-design">
+            <div class="form-child">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Category</mat-label>
+                    <!-- [(value)]="selected" -->
+                    <mat-select  formControlName="category" [ngClass]="{ 'is-invalid': submitted && f['category'].errors }">
+                        <ng-container *ngFor="let prod of categories">
+                            <mat-option *ngIf="prod.productEnable" [value]="prod.category">{{prod.title}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <div *ngIf="submitted && f['category'].errors" class="alert alert-danger mt-2">
+                    <div *ngIf="f['category'].errors['required']">This field is required.</div>
+                </div>
+            </div>
+            <div class="form-child">
+                <mat-form-field class="example-full-width">
+                    <input matInput type="text" placeholder="Title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f['title'].errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && f['title'].errors" class="alert alert-danger">
+                    <div *ngIf="f['title'].errors['required']">This field is required.</div>
+                    <div *ngIf="f['title'].errors['minlength']">Title should be 3 character.</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-design">
+            <div class="form-child">
+                <mat-form-field class="example-full-width">
+                    <input matInput type="text" placeholder="SKU Number" maxlength="16" formControlName="skuNumber" [ngClass]="{ 'is-invalid': submitted && f['skuNumber'].errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && f['skuNumber'].errors" class="alert alert-danger">
+                    <div *ngIf="f['skuNumber'].errors['required']">This field is required.</div>
+                    <div *ngIf="f['skuNumber'].errors['minlength']">SKU Number should be 16 character.</div>
+                </div>
+            </div>
+            <div class="form-child">
+                <mat-form-field class="example-full-width">
+                    <input matInput type="number" placeholder="Price" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f['price'].errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && f['price'].errors" class="alert alert-danger">
+                    <div *ngIf="f['price'].errors['required']">This field is required.</div>
+                    <div *ngIf="f['price'].errors['minlength']">Price should be minmum 2 digit.</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-design">
+            <div class="form-child">
+                <mat-form-field class="example-full-width">
+                    <input matInput type="text" placeholder="Discount in %" formControlName="discount" [ngClass]="{ 'is-invalid': submitted && f['discount'].errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && f['discount'].errors" class="alert alert-danger">
+                    <div *ngIf="f['discount'].errors['required']">* Discount Should Be ( Type <strong>free</strong> OR In <strong>digit</strong> )</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-design">
+            <div class="form-child">
+                <mat-form-field class="example-full-width">
+                    <input matInput type="number" placeholder="Number Of Items" formControlName="numOfItem" [ngClass]="{ 'is-invalid': submitted && f['numOfItem'].errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && f['numOfItem'].errors" class="alert alert-danger">
+                    <div *ngIf="f['numOfItem'].errors['required']">This field is required.</div>
+                </div>
+                <input type="hidden" placeholder="1 value pass" formControlName="quantity">
+            </div>
+        </div>
+        <div class="form-design">
+            <div class="form-child">
+                <!-- <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Description" rows="5" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
+                </mat-form-field> -->
+                <ckeditor [editor]="Editor" data="" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></ckeditor>
+                <div *ngIf="submitted && f['description'].errors" class="alert alert-danger">
+                    <div *ngIf="f['description'].errors['required']">This field is required.</div>
+                    <div *ngIf="f['description'].errors['minlength']">Description should be minmum 20 letters.</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-design">
+            <div class="form-child">
+                <ul class="product-image">
+                    <li *ngFor="let url of imgUrls; let i=index;">
+                        <a class="close-bt" mat-icon-button (click)="removeThumb(i)">
+                            <mat-icon>close</mat-icon>
+                        </a>
+                        <img [src]="url" alt="img">
+                    </li>
+                    <li>
+                        <input type="text" formControlName="prodImg" hidden>
+                        <input
+                        (change)="selectProdImg($event)"
+                        name="image"
+                        autocomplete="off"
+                        formControlName="productImg"
+                        #fileUploader
+                        accept="image/*"
+                        type="file"
+                        class="inputfile"
+                        id="file"
+                        multiple
+                        [ngClass]="{ 'is-invalid': submitted && f['productImg'].errors }">
+                        <label for="file">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" class="mr-1" viewBox="0 0 20 17"><path fill="#ffffff" d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg>
+                            Select Images
+                        </label>
+                    </li>
+                </ul>
+                <div *ngIf="submitted && f['productImg'].errors" class="alert alert-danger" style="position: relative;">
+                    <div *ngIf="f['productImg'].errors['required']">This field is required.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-design mt-2 justify-content-space-between">
+            <div class="form-child d-flex flex-direction-row align-items-center justify-content-space-between">
+                <div class="example-section">
+                    <mat-checkbox class="example-margin" color="primary" formControlName="productEnable" (click)="productPublish()">Please {{ prodPublist ? 'Uncheck' : 'Check'}} for {{ prodPublist ? 'Unpublish' : 'Publish'}} Product </mat-checkbox>
+                </div>
+                <button mat-flat-button type="submit" class="readmore" color="primary">
+                    Add Product <span *ngIf="spinner">...</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

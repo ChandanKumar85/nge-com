@@ -1,0 +1,96 @@
+mat-card.header {
+    padding:10px 15px;
+    background: #f8f8f8;
+    border-radius: 0;
+    h2 {
+        font-size: 22px;
+        font-weight: 400;
+    }
+}
+.example-full-width {
+    width: 100%;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 10px;
+}
+.alert { 
+    position: absolute;
+    bottom: -5px;
+}
+.all-users { width: 49%; }
+.add-user { width: 49%; }
+
+mat-card.header_user {
+    padding:10px;
+    background: #f8f8f8;
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        li {
+            font-weight: 500; 
+            width: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            &.title {  text-transform: capitalize; }
+            &.action { width: auto; justify-content: space-between;
+                button {
+                    width: 35px;
+                    height: 35px;
+                    line-height: 35px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    mat-icon {
+                        width: 22px;
+                        height: 22px;
+                        font-size: 22px;
+                        position: relative;
+                        top: -1px;
+                    }
+                }
+            }
+        }
+        &.list {
+            li { font-weight: 400;}
+        }
+    }
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+    font-weight: 500;
+    color: var(--white);
+    margin: 0;
+    padding: 0;
+	cursor: pointer;
+    background-color: var(--golden);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: ease-in-out 0.4s;
+    float: left;
+    height: 100%;
+    width: 100%;
+    font-size: inherit;
+}
+.reset_btn {
+    padding: 4px 30px;
+    background-color: var(--red);
+    color: #fff;
+    font-size: inherit;
+    margin-left: 1rem;
+}

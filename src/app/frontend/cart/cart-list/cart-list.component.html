@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Cart ({{totalItem}})
+    <button mat-dialog-close mat-icon-button class="close-mat" (click)="closeBottomSheet()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+</h1>
+<section class="app-cart-list">
+    <app-bottom-sheet class="app_cart_list"></app-bottom-sheet>
+</section>
+<div class="order_summery">
+    <a href="/" routerLink="/cart" class="place_order mt-0" (click)="closeBottomSheet()" mat-dialog-close mat-button>Add
+        to Cart</a>
+</div>

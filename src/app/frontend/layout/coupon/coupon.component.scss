@@ -1,0 +1,50 @@
+// Coupon Code Css
+.have-coupon {
+    margin-bottom: 15px !important;
+    padding: 0 !important;
+    color: var(--lightblack);
+    font-weight: 500;
+    .showcoupon {
+        color: var(--golden);
+        font-weight: 400;
+    }
+  }
+  .coupon-code-area {
+    position: relative;
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 2px solid var(--gray);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: var(--white);
+    .coupon-input {
+        flex: 1;
+        height: 48px;
+        border: 1px solid var(--graydark);
+        font-size: inherit;
+        margin: 0 0 0 0;
+        padding: 0 15px;
+        width: 100%;
+        font-size: 18px;
+    }
+    .sibmit {
+        background: var(--golden);
+        color: var(--white);
+        font-size: inherit;
+        font-weight: 600;
+        width: 105px;
+        margin-left: 15px;
+    }
+    .password {
+        position: relative;
+        width: 100%;
+        .mat-icon-button {
+            position: absolute;
+            right: 5px;
+            top: -4px;
+            bottom: 0;
+            margin: auto;
+            color: var(--golden);
+        }
+    }
+  }

@@ -1,0 +1,49 @@
+.checkout-review {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+        padding: 20px 0;
+        border-top: 1px solid var(--graydark);
+        p {
+             margin: 0;
+             a {
+                color: var(--golden);
+                font-weight: 400;
+            }
+        }
+        .example-margin {
+            font-size: 13px;
+            a {
+                color: var(--golden);
+                font-weight: 400;
+            }
+            span {
+                color: var(--red);
+                font-weight: 500;
+                font-size: 22px;
+            }
+        }
+    }
+}
+.place_order {
+    width: 100%;
+    margin-top: 30px;
+    background: var(--golden);
+    color: var(--white);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}

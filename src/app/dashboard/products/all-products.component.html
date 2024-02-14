@@ -1,0 +1,74 @@
+<div class="product-list">
+    <mat-card class="header d-flex align-items-center mb-4">
+        <h2>Product</h2>
+    </mat-card>
+    <ng-container *ngIf="!spinner">
+        <mat-card class="header sub_title">
+            <ul>
+                <li class="status">Status</li>
+                <li class="img-sec">Product</li>
+                <li class="title">
+                    <span>Product Title</span>
+                    <div class="search-by">
+                        <select (change)="onCategoryChange($event)">
+                            <option value="all">All</option>
+                            <ng-container *ngFor="let prod of categories">
+                                <option *ngIf="prod.productEnable" [value]="prod.category">{{prod.title}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                </li>
+                <li class="action">
+                    No. Products : {{selectedCategory.length}}
+                    <a href="javascript:void(0);" routerLink="/admin/add-product" mat-flat-button class="badge-button"
+                        color="primary">Add Product</a>
+                </li>
+            </ul>
+        </mat-card>
+        <div class="body-scroll">
+            <mat-card *ngFor="let prod of selectedCategory; let i=index; trackBy:gitProdTrackBy">
+                <ul>
+                    <li class="status">
+                        <mat-checkbox matTooltip="{{prod.productEnable == true ? 'Published' : 'Unpublished'}}"
+                            matTooltipPosition="left" matTooltipClass="matTooltip" color="primary"
+                            [checked]="!prod.productEnable" (click)="updateActive(prod, !prod.productEnable)">
+                        </mat-checkbox>
+                    </li>
+                    <li class="img-sec"><img [src]="prod.productImg" width="120" height="120" [alt]="prod.title"> </li>
+                    <li class="title">{{prod.title}} <strong>({{prod.numOfItem}})</strong></li>
+                    <li class="action">
+                        <a mat-button color="accent" routerLink="/admin/product/{{prod.id}}">
+                            <mat-icon>remove_red_eye</mat-icon> View
+                        </a>
+                        <a mat-button color="primary" routerLink="/admin/edit-product/{{prod.id}}">
+                            <mat-icon>edit</mat-icon> Edit
+                        </a>
+                        <button mat-button color="warn" (click)="dialogModel(prod)">
+                            <mat-icon>delete_outline</mat-icon> Trash
+                        </button>
+                    </li>
+                </ul>
+            </mat-card>
+        </div>
+    </ng-container>
+    <div class="ht-100 d-flex justify-content-center align-items-center" *ngIf="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<ng-template #confDialog>
+    <mat-dialog-content>
+        <button mat-icon-button class="close-btn" matDialogClose>
+            <mat-icon>close</mat-icon>
+        </button>
+        <h2 matDialogTitle class="text-center">Are you sure, Do you want to move in Trash?</h2>
+        <p class="d-flex">
+            <img src="{{productData.productImg}}" width="" height="100" class="mr-2" alt="{{productData.title}}">
+            {{productData.title}}
+        </p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-stroked-button matDialogClose class="gray-btn">No</button>
+        <button mat-flat-button matDialogClose (click)="deleteProd(productData.id)" color="warn">Yes</button>
+    </mat-dialog-actions>
+</ng-template>

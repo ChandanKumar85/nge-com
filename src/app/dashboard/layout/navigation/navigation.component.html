@@ -1,0 +1,14 @@
+<ul>
+    <li routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact: true}"><a mat-button href="javascript:void(0);" routerLink="/admin/dashboard">Dashboard</a></li>
+    <li routerLinkActive="active-nav"><a mat-button href="javascript:void(0);" routerLink="/admin/products">All Products</a></li>
+    <li routerLinkActive="active-nav"><a mat-button href="javascript:void(0);" routerLink="/admin/categories">Add Category</a></li>
+    <li routerLinkActive="active-nav"><a mat-button href="javascript:void(0);" (click)="showFiller = !showFiller">Pages</a>
+        <ul *ngIf="showFiller">
+            <li routerLinkActive="active-nav"><a mat-button href="javascript:void(0);" routerLink="/admin/home">Home Banner</a></li>
+            <li routerLinkActive="active-nav"><a mat-button href="javascript:void(0);" routerLink="/admin/about-us">About us</a></li><li routerLinkActive="active-nav"><a mat-button href="javascript:void(0);" routerLink="/admin/privacy-policy">Privacy policy</a></li>
+            <li routerLinkActive="active-nav"><a mat-button href="javascript:void(0);" routerLink="/admin/terms-conditions">Terms Conditions</a></li>
+            <li routerLinkActive="active-nav"><a mat-button href="javascript:void(0);" routerLink="/admin/contact-us">Contact us</a></li>
+        </ul>
+    </li>
+    <li routerLinkActive="active-nav"><a mat-button href="javascript:void(0);" routerLink="/admin/trash">Trash</a></li>
+</ul>

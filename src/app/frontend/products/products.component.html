@@ -1,0 +1,58 @@
+<ng-container *ngIf="!spinner">
+    <div class="container d-flex mt-4 pb-3">
+        <div class="left-part mr-3">
+            <section class="d-flex flex-direction-column">
+                <ng-container *ngFor="let category of categories">
+                    <mat-checkbox *ngIf="category.productEnable" color="primary"
+                        (change)="filterData($event, category.category)" class="example-margin">{{category.title}}
+                    </mat-checkbox>
+                </ng-container>
+                <!-- <ng-template [ngIf]="true">
+                    Hello
+                </ng-template>
+                <div *ngIf="true; else name">Content to render when condition is true.</div>
+                <ng-template #name>Chandan</ng-template>
+                <div *ngIf="false; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>Content to render when condition is true.</ng-template>
+                <ng-template #elseBlock>Content to render when condition is false.</ng-template>
+                <div *ngIf="true as value; else elseBlock">{{value}}</div>
+                <ng-template #elseBlock>Content to render when value is null.</ng-template> -->
+
+            </section>
+        </div>
+        <div class="card_wrap">
+            <ng-container *ngFor="let item of filteredProduct | paginate: { itemsPerPage: 15, currentPage: p }">
+                <div class="card_box">
+                    <app-product-card [productData]="item" class="wd-100">
+                        <div class="cart-favorite">
+                            <button mat-icon-button class="add-to-cart" color="primary"
+                                (click)="addToCartProduct(item)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#7e7e7e"
+                                        d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
+                                </svg>
+                            </button>
+                            <button mat-icon-button class="favorite" (click)="loginState(isLogedIn)">
+                                <mat-icon>favorite</mat-icon>
+                            </button>
+                        </div>
+                    </app-product-card>
+                </div>
+            </ng-container>
+            <pagination-controls class="pagination-ctl wd-100" (pageChange)="p = $event" previousLabel="Previous"
+                nextLabel="Next"></pagination-controls>
+        </div>
+    </div>
+</ng-container>
+
+<div class="ht-100 d-flex justify-content-center align-items-center" *ngIf="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+
+<!-- <ng-container *ngFor="let cat of category">
+    <label *ngIf="cat.productEnable">
+        <input type="checkbox" value="{{cat.category}}" (change)="changeFn($event)">
+        {{cat.title}}
+    </label>
+</ng-container> -->
+<!-- <input class="form-control" placeholder="Search Products..." [(ngModel)]="nameSearch"> -->

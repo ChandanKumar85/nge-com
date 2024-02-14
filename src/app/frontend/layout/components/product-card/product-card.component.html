@@ -1,0 +1,23 @@
+<div class="card-box-inner">
+    <ng-content select=".cart-favorite"></ng-content>
+    <div class="d-flex align-items-center justify-content-center img-box mb-2 mt-2">
+        <img src="{{productData.productImg}}" alt="{{productData.title}}">
+    </div>
+    <h2 class="text-center" [title]="productData.title">{{productData.title | titlecase | sliceName:24}}</h2>
+    <div class="d-flex align-items-center justify-content-center price-box">
+        <div class="sell-price" *ngIf="productData.discount; else originalPrice">
+            {{(productData.price)- ((productData.price*productData.discount)/100) | currency:'INR'}}
+        </div>
+        <ng-template #originalPrice>
+            <div class="sell-price wd-100 d-flex justify-content-space-between">
+                <span>{{productData.price | currency:'INR'}}</span>
+                <span class="green">New Arival</span>
+            </div>
+        </ng-template>
+        <div class="discount-price" *ngIf="productData.discount"><del>{{productData.price | currency:'INR'}}</del></div>
+        <div class="off-rice" *ngIf="productData.discount"><span>{{productData.discount}}% off</span></div>
+    </div>
+    <div class="d-flex justify-content-center mt-2">
+        <a [routerLink]="['/product',productData.id]" class="button_detail" (click)="clickedProduct(productData.id)" mat-button color="primary">View Detail</a>
+    </div>
+</div>

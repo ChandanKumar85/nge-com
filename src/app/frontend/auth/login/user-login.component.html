@@ -1,0 +1,141 @@
+<button mat-button mat-dialog-close mat-icon-button class="close-mat">
+    <mat-icon>close</mat-icon>
+</button>
+<div class="box-form">
+    <div class="left">
+        <div class="overlay">
+            <h1>Welcome to <small>ShopNow</small></h1>
+            <p style="flex: 1;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Curabitur et est sed felis aliquet sollicitudin</p>
+            <div class="d-flex justify-content-space-between align-items-center login-with-social">
+                <button mat-button class="facebook"><i class="fa fa-facebook mr-1" aria-hidden="true"></i> Login with Facebook</button>
+                <button mat-button class="twitter"><i class="fa fa-twitter mr-1" aria-hidden="true"></i> Login with Twitter</button>
+                <button mat-button class="google"><i class="fa fa-google mr-1" aria-hidden="true"></i> Login with Google</button>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div *ngIf="loginMode" class="spacer">
+            <h5>{{createAccount? "Login" : "Sign Up"}}</h5>
+
+            <!-- Craete User Form -->
+            <ng-container *ngIf="!createAccount">
+                <form [formGroup]="userForm" (ngSubmit)="submitToSignUp()">
+                    <div class="login-form">
+                        <div class="form-group">
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput placeholder="" type="email" formControlName="email">
+                            <div *ngIf="submitted && f['email'].errors" class="alert alert-danger">
+                                <div *ngIf="f['email'].errors['required']"><small>This field is required.</small></div>
+                                <div *ngIf="f['email'].errors['email']"><small>Enter valid email.</small></div>
+                            </div>
+                        </div>
+                        <div class="pass_group">
+                            <div class="form-group">
+                                <mat-label>Enter Password</mat-label>
+                                <div class="password">
+                                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="newPassword">
+                                    <a mat-icon-button (click)="hide = !hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </a>
+                                </div>
+                                <div *ngIf="submitted && f['newPassword'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['newPassword'].errors['required']"><small>This field is required.</small></div>
+                                    <div *ngIf="f['newPassword'].errors['pattern']"><small>Minimum 8 characters, Combination of laters(at list one Number, Capital latter and Special chractor).</small></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <mat-label>Confirm Password</mat-label>
+                                <div class="password">
+                                    <input matInput [type]="hideC ? 'password' : 'text'"
+                                        formControlName="cnfPassword">
+                                    <a mat-icon-button (click)="hideC = !hideC">
+                                        <mat-icon>{{hideC ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </a>
+                                </div>
+                                <div *ngIf="submitted && f['cnfPassword'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['cnfPassword'].errors['required']"><small>This field is required.</small></div>
+                                </div>
+                                <div class="alert alert-danger" *ngIf="f['cnfPassword'].getError('matchPassword')!=null">
+                                    <small>Password mismatch</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wd-100 mt-3 d-flex justify-content-space-between align-items-center">
+                            <div></div>
+                            <button mat-button class="login-button">Submit <span *ngIf="requestAnimate">...</span></button>
+                        </div>
+                    </div>
+                </form>
+            </ng-container>
+            <!-- Craete User Form End -->
+
+            <!-- User Login Form -->
+            <ng-container *ngIf="createAccount">
+                <form [formGroup]="userFormLogin" (ngSubmit)="submitToLogin()">
+                    <div class="login-form">
+                        <div class="form-group">
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput placeholder="" type="email" formControlName="emailId">
+                            <div *ngIf="submittedC && fu['emailId'].errors" class="alert alert-danger">
+                                <div *ngIf="fu['emailId'].errors['required']"><small>This field is required.</small></div>
+                                <div *ngIf="fu['emailId'].errors['emailId']"><small>Enter valid email.</small></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <mat-label>Enter Password</mat-label>
+                            <div class="password">
+                                <input matInput [type]="hideL ? 'password' : 'text'" formControlName="password">
+                                <a mat-icon-button (click)="hideL = !hideL">
+                                    <mat-icon>{{hideL ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </a>
+                            </div>
+                            <div *ngIf="submittedC && fu['password'].errors" class="alert alert-danger">
+                                <div *ngIf="fu['password'].errors['required']"><small>This field is required.</small></div>
+                                <div *ngIf="fu['password'].errors['pattern']"><small>Minimum 8 characters, Combination of laters(at list one Number, Capital latter and Special chractor).</small></div>
+                            </div>
+                        </div>
+                        <div class="wd-100 mt-3 d-flex justify-content-space-between align-items-center">
+                            <a href="javascript:void(0)" style="cursor: pointer;" (click)="switchToSignUp()">
+                                Forget Password
+                            </a>
+                            <button mat-button class="login-button">Submit <span *ngIf="requestAnimateU">...</span></button>
+                        </div>
+                    </div>
+                </form>
+            </ng-container>
+            <!-- User Login Form End -->
+
+        </div>
+
+        <!-- Forget Password -->
+        <div *ngIf="!loginMode">
+            <h5>Forget Password</h5>
+            <form [formGroup]="forgetPassword" (ngSubmit)="submitToRetrive()">
+                <div class="login-form">
+                    <div class="form-group">
+                        <mat-label>Enter your email</mat-label>
+                        <input matInput placeholder="" type="email" formControlName="emailIdf">
+                        <div *ngIf="submittedP && fp['emailIdf'].errors" class="alert alert-danger">
+                            <div *ngIf="fp['emailIdf'].errors['required']"><small>This field is required.</small></div>
+                            <div *ngIf="fp['emailIdf'].errors['email']"><small>Enter valid email.</small></div>
+                        </div>
+                    </div>
+                    <div class="wd-100 mt-3 d-flex justify-content-space-between align-items-center">
+                        <a href="javascript:void(0)" style="cursor: pointer;" (click)="switchToSignUp()">
+                            Remember Password
+                        </a>
+                        <button mat-button class="login-button">Submit <span *ngIf="requestAnimateP">...</span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Forget Password End -->
+
+
+        <p class="mt-1" *ngIf="loginMode">{{createAccount ? "Don't have an account" : "Already have an account"}} 
+            <a href="javascript:void(0)" (click)="registerAccount()">{{createAccount ? "Creat Your Account" : "Login"}}</a> 
+            {{createAccount ? "it takes less than a minute" : ""}}
+        </p>
+    </div>
+</div>

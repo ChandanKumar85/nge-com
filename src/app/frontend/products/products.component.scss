@@ -1,0 +1,26 @@
+.card_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+    flex:1;
+}
+.card_box {
+    width: 33.33%;
+    box-sizing: border-box;
+    margin-bottom: 0px;
+    padding: 10px;
+    @media( max-width:640px) {
+        width: 100%;
+    }
+}
+
+.left-part { min-width: 280px; position: relative;}
+
+.example-margin { margin: 5px 0;}
+
+.fixFilter {
+    position: fixed;
+    z-index: 99;
+    width: 260px;
+    top: 75px;
+}

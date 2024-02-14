@@ -1,0 +1,72 @@
+<mat-card class="product-detail-view cart_view" *ngFor="let item of products; let i = index">
+    <figure>
+        <!-- <a [routerLink]="['/product',item.id]"></a> -->
+        <img src="{{item.productImg}}" width="" height=""
+                alt="{{item.title}}">
+    </figure>
+    <div class="product-line-grid-body">
+        <h2 class="mb-0">{{item.title}}</h2>
+        <div class="price-box">
+            <div class="sell-price text-right" *ngIf="item.discount; else subtotalPrice">
+                {{((item.price) - ((item.price*item.discount)/100))*item.quantity | currency:'INR'}}
+                <!-- <button mat-icon-button aria-label="info" [matMenuTriggerFor]="menuD">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#ccc"
+                            d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.033 16.01c.564-1.789 1.632-3.932 1.821-4.474.273-.787-.211-1.136-1.74.209l-.34-.64c1.744-1.897 5.335-2.326 4.113.613-.763 1.835-1.309 3.074-1.621 4.03-.455 1.393.694.828 1.819-.211.153.25.203.331.356.619-2.498 2.378-5.271 2.588-4.408-.146zm4.742-8.169c-.532.453-1.32.443-1.761-.022-.441-.465-.367-1.208.164-1.661.532-.453 1.32-.442 1.761.022.439.466.367 1.209-.164 1.661z" />
+                    </svg>
+                </button> -->
+                <!-- <mat-menu #menuD="matMenu" class="price-details">
+                    <h5>Price details</h5>
+                    <ul>
+                        <li><strong>Maximum Retail Price
+                                <small>(incl. of all taxes)</small></strong>
+                            <del>{{item.price | currency:'INR'}}</del>
+                        </li>
+                        <li><strong>Selling Price</strong>
+                            <span>
+                                <span class="sell-price" *ngIf="item.discount; else originalPricePop">
+                                    {{(item.price)- ((item.price*item.discount)/100) | currency:'INR'}}
+                                </span>
+                                <ng-template #originalPricePop>
+                                    <span class="sell-price">{{item.price | currency:'INR'}}</span>
+                                </ng-template>
+                            </span>
+                        </li>
+                    </ul>
+                    <p *ngIf="item.discount">
+                        <small>
+                            Overall you save {{ ((item.price*item.discount)/100) |
+                            currency:'INR' }} on {{item.discount}}% discount on this product
+                        </small>
+                    </p>
+                </mat-menu> -->
+            </div>
+            <ng-template #subtotalPrice>
+                <div class="sell-price">
+                    <span>{{(item.price)*item.quantity | currency:'INR'}}</span>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <!-- <div class="product-line-grid-right">
+        <div class="select-number-item">
+            <button mat-icon-button (click)="decrease(item.id, item.quantity)">
+                <mat-icon>remove</mat-icon>
+            </button>
+            <span class="value">{{item.quantity}}</span>
+            <button mat-icon-button (click)="increase(item.id, item.quantity)">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div class="d-flex prod-satus">
+            <button mat-icon-button color="primary" aria-label="Save for Later" title="Save for Later"
+            (click)="saveForLater(item)">
+                <img src="../../../assets/icons/tag_icon.svg" width="35" alt="">
+            </button>
+            <button mat-icon-button color="warn" aria-label="Delete Item" title="Delete Item"
+                (click)="removeCartValue(item.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div> -->
+</mat-card>

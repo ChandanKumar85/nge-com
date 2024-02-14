@@ -1,0 +1,54 @@
+.card-box-inner { 
+    position: relative;
+    box-shadow: 0 0 5px #e1e1e1;
+    padding: 20px;
+    overflow: hidden;
+    &:hover img {
+        transform: scale(1.1);
+    }
+    .img-box {
+        min-height: 220px;
+        img {
+            max-height: 160px;
+            width: auto;
+            transition: 0.3s ease-in-out;
+            max-width: 85%;
+        }
+    }
+    h2 {
+        font-size: 18px;
+        margin: 0 0 10px;
+        line-height: initial;
+        font-weight: 500;
+        color: var(--black);
+    }
+}
+
+.button_detail {
+    background: var(--golden);
+    color: var(--white);
+    font-weight: 500;
+    padding: 0 35px;
+    border: none;
+    line-height: 45px;
+    height: 45px;
+    width: auto;
+    border-radius: 30px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.price-box {
+    div:not(:first-child) { margin-left: 12px;}
+    font-weight: 400;
+    font-size: 16px;
+    .discount-price {
+        font-size: 16px;
+        color: #878787;
+    }
+    .off-rice {
+        color: #388e3c;
+        font-size: 16px;
+        font-weight: 500;
+    }
+  }

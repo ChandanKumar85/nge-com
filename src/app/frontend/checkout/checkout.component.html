@@ -1,0 +1,220 @@
+<div class="container mt-4 pt-2 pb-3">
+    <div class="cart_box_area">
+        <section class="cart_list_box">
+            <h1>USER DETAILS</h1>
+            <ng-container *ngIf="!logedInStatus">
+                <form autocomplete="off" [formGroup]="bellingDetail" (ngSubmit)="reviewAddress()">
+                    <div class="ecom-form">
+                        <div class="form_row">
+                            <div class="form_col_2">
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">First name <span>*</span></mat-label>
+                                    <input class="ds-input" matInput placeholder="First name" formControlName="firstName" 
+                                    [ngClass]="{'is-invalid':submitted && f['firstName'].errors}">
+                                </div>
+                                <div *ngIf="submitted && f['firstName'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['firstName'].errors['required']">This field is required.</div>
+                                </div>
+                            </div>
+                            <div class="form_col_2">
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">Last name <span>*</span></mat-label>
+                                    <input class="ds-input" matInput placeholder="Last name" formControlName="lastName" 
+                                    [ngClass]="{'is-invalid':submitted && f['lastName'].errors}">
+                                </div>
+                                <div *ngIf="submitted && f['lastName'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['lastName'].errors['required']">This field is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="form_col_2">
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">Phone <span>*</span></mat-label>
+                                    <input class="ds-input" type="text" matInput placeholder="Phone number" formControlName="phoneNumber" 
+                                    [ngClass]="{'is-invalid':submitted && f['phoneNumber'].errors}">
+                                </div>
+                                <div *ngIf="submitted && f['phoneNumber'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['phoneNumber'].errors['required']">This field is required.</div>
+                                    <div *ngIf="f['phoneNumber'].errors['minlength']">This field minmum 10 letters.</div>
+                                    <div *ngIf="f['phoneNumber'].errors['maxlength']">This field maximum 10 letters.</div>
+                                </div>
+                            </div>
+                            <div class="form_col_2">
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">Email address <span>*</span></mat-label>
+                                    <input class="ds-input" type="email" matInput placeholder="Email address" formControlName="emailId" 
+                                    [ngClass]="{'is-invalid':submitted && f['emailId'].errors}">
+                                </div>
+                                <div *ngIf="submitted && f['emailId'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['emailId'].errors['required']">This field is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="form_col_1">
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">Street address <span>*</span></mat-label>
+                                    <input class="ds-input" matInput placeholder="House number and street name" formControlName="street" 
+                                    [ngClass]="{'is-invalid':submitted && f['street'].errors}">
+                                </div>
+                                <div *ngIf="submitted && f['street'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['street'].errors['required']">This field is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="form_col_2">
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">PIN Code <span>*</span></mat-label>
+                                    <input class="ds-input" matInput placeholder="PIN code" formControlName="pinCode" 
+                                    [ngClass]="{'is-invalid':submitted && f['pinCode'].errors}">
+                                </div>
+                                <div *ngIf="submitted && f['pinCode'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['pinCode'].errors['required']">This field is required.</div>
+                                </div>
+                            </div>
+                            <div class="form_col_2">
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">Town / City <span>*</span></mat-label>
+                                    <input class="ds-input" matInput placeholder="Town / City name" formControlName="cityName" 
+                                    [ngClass]="{'is-invalid':submitted && f['cityName'].errors}">
+                                </div>
+                                <div *ngIf="submitted && f['cityName'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['cityName'].errors['required']">This field is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="form_col_2">
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">State <span>*</span></mat-label>
+                                    <mat-select formControlName="state" [ngClass]="{'is-invalid':submitted && f['state'].errors}">
+                                        <mat-option value="Select" selected>Select State</mat-option>
+                                        <mat-option value="bihar">Bihar</mat-option>
+                                    </mat-select>
+                                </div>
+                                <div *ngIf="submitted && f['state'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['state'].errors['required']">This field is required.</div>
+                                </div>
+                            </div>
+                            <div class="form_col_2">
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">Country / Region <span>*</span></mat-label>
+                                    <input class="ds-input" matInput placeholder="Last name" readonly value="India" formControlName="country" 
+                                    [ngClass]="{'is-invalid':submitted && f['country'].errors}">
+                                </div>
+                                <div *ngIf="submitted && f['country'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['country'].errors['required']">This field is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="form_col_1">
+                                <h2>Additional information</h2>
+                                <div class="fromwrap">
+                                    <mat-label class="field_label">Order notes (optional)</mat-label>
+                                    <textarea matInput class="ds-input text_area" formControlName="information"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <mat-checkbox (change)="placeNow($event)" formControlName="placeNow" class="example-margin" color="primary">I have read and agree to the website 
+                        <a href="javascript:void(0);" (click)="termAndCond()">terms and conditions</a> <span>*</span></mat-checkbox>
+                        <button class="place_order" [disabled]="activeBtn" mat-button>Click to Review Address</button>
+                    </div>
+                </form>
+            </ng-container>
+            <ng-container *ngIf="logedInStatus">
+                <mat-card>
+                    <mat-card-header>
+                      <mat-card-title class="mb-3">Address 1</mat-card-title>
+                      <mat-card-subtitle>
+                        <div class="d-flex align-items-center"><img class="mr-1" src="../../../assets/logos/razorpay.svg" width="100" height="50" alt="Razorpay">
+                            Paying with Razorpay</div>
+                        <p class="mb-1"><strong>Full Name:</strong> {{userDetail.firstName}} {{userDetail.lastName}}</p>
+                        <p class="mb-1"><strong>Phone Number:</strong> {{userDetail.phoneNumber}}</p>
+                        <p class="mb-1"><strong>Email address:</strong> {{userDetail.emailId}}</p>
+                        <p class="mb-1"><strong>Address:</strong> {{userDetail.street}} {{userDetail.cityName}} {{userDetail.state}} {{userDetail.pinCode}} {{userDetail.country}}</p>
+                        <p *ngIf="userDetail.information"><strong>Additional information:</strong> {{userDetail.information}}</p>
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                      <button mat-stroked-button color="primary" (click)="editDetail()">Edit</button>
+                      <button mat-flat-button color="primary" (click)="onSubmit()">Place Order<span *ngIf="spinner">...</span></button>
+                    </mat-card-actions>
+                  </mat-card>
+            </ng-container>
+        </section>
+        <section class="order_summery">
+            <div class="checkout-order-review">
+                <h2>Your order</h2>
+                <div class="wd-table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="product-name">Product</th>
+                                <th class="product-total">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart_item" *ngFor="let item of getCartDetail; let i = index">
+                                <td class="product-name">
+                                    <span class="pisol_product_name">{{item.title}} - <strong>{{item.quantity}} Item<span *ngIf="item.quantity > 1">s</span></strong></span>
+                                </td>
+                                <td class="product-total">
+                                    <bdi>{{((item.price) - ((item.price*item.discount)/100))*item.quantity | currency:'INR'}}</bdi>
+                                </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    <span class="pisol_product_name">Shipping Charge</span>
+                                </td>
+                                <td class="product-total">
+                                    Free
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="cart-subtotal">
+                                <th class="product-name">Subtotal</th>
+                                <td><strong>{{grandTotal | currency:'INR'}}</strong></td>
+                            </tr>
+                            <tr class="order-total">
+                                <th class="product-name">Grand Total</th>
+                                <td><strong>{{grandTotal | currency:'INR'}}</strong> </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <app-coupon></app-coupon>
+                <ul class="checkout-review">
+                    <li>
+                        <p>Your personal data will be used to process your order, support your experience throughout this
+                            website, and for other purposes described in our <a href="javascript:void(0);" (click)="privacyPolicy()">privacy policy</a>.
+                        </p>
+                    </li>
+                    <!-- <li>
+                        <mat-checkbox (change)="placeNow($event)" class="example-margin" color="primary">I have read and agree to the website <a
+                                href="/" routerLink="/terms-conditions">terms and conditions</a> <span>*</span></mat-checkbox>
+                        <button class="place_order" [disabled]="activeBtn" mat-button>Place order</button>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="blockreassurance_product mt-3">
+                <div>
+                    <img class="svg" src="../../../../assets/icons/ic_verified_user_black_36dp_1x.png">
+                    <p class="block-title">Free Shipping</p>
+                </div>
+                <div>
+                    <img class="svg" src="../../../../assets/icons/ic_local_shipping_black_36dp_1x.png">
+                    <p class="block-title">Easy Returns</p>
+                </div>
+                <div>
+                    <img class="svg" src="../../../../assets/icons/ic_swap_horiz_black_36dp_1x.png">
+                    <p class="block-title">Lowest Price Guarantee</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<app-privacy-policy hidden></app-privacy-policy>

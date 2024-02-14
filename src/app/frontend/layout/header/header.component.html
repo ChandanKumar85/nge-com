@@ -1,0 +1,87 @@
+<div class="header d-flex">
+    <div class="container d-flex align-items-center">
+        <a routerLink="/" class="mr-3"><img src="../../../assets/logos/logo.jpg" class="logo" alt="logo"></a>
+        <ul class="menu-content ml-3">
+            <li class="menu-item">
+                <a routerLink="/">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a routerLink="/products">
+                    <span>All Products</span>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a href="/" routerLink="/products">
+                    <span> Men's</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="/" routerLink="/products">
+                    <span>Jewelery</span>
+                </a>
+            </li> -->
+            <li class="menu-item">
+                <a routerLink="/contact">
+                    <span>Contact us</span>
+                </a>
+            </li>
+        </ul>
+        <div class="spacer"></div>
+        <div class="search_top">
+            <!-- (keyup)="productSearch($event)" [(ngModel)]="nameSearch" -->
+            <button mat-icon-button>
+                <mat-icon>search</mat-icon>
+            </button>
+            <input class="text_input" placeholder="Search Products...">
+        </div>
+        <button type="button" (click)="cartView()" mat-icon-button color="primary" aria-label="Add to Cart">
+            <samp class="mat-badge">{{totalItem}}</samp>
+            <mat-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="#c29958"
+                        d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
+                </svg>
+            </mat-icon>
+        </button>
+        <a mat-icon-button color="warn" class="ml-1 wish_list_icon" (click)="loginState(isLogedIn)">
+            <samp class="mat-badge">0</samp>
+            <mat-icon>favorite_border</mat-icon>
+        </a>
+        <button mat-icon-button class="ml-1" *ngIf="!isLogedIn" (click)="loginState(isLogedIn)" title="Login">
+            <img src="../../../../assets/icons/user_icon.svg" class="user-img" alt="User">
+        </button>
+        <ng-container *ngIf="isLogedIn">
+            <button mat-button aria-label="Navigation" class="login_btn ml-2" [matMenuTriggerFor]="menu">Chandan
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <a routerLink="/" mat-menu-item>          
+                    <svg style="transform: scale(1);" class="mr-2 prof" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 8.674 9.633">
+                        <g id="Icon_feather-user" data-name="Icon feather-user" transform="translate(-5.5 -4)">
+                        <path id="Path_68818" data-name="Path 68818" d="M13.674,25.378v-.959A1.918,1.918,0,0,0,11.755,22.5H7.918A1.918,1.918,0,0,0,6,24.418v.959" transform="translate(0 -12.245)" fill="none" stroke="#0E1817" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                        <path id="Path_68819" data-name="Path 68819" d="M15.837,6.418A1.918,1.918,0,1,1,13.918,4.5,1.918,1.918,0,0,1,15.837,6.418Z" transform="translate(-4.082)" fill="none" stroke="#0E1817" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                        </g>
+                    </svg>
+                    View Profile</a>
+                <a routerLink="/" mat-menu-item>          
+                    <svg style="transform: scale(1);" class="mr-2 prof" xmlns="http://www.w3.org/2000/svg" width="8.68" height="9.534" viewBox="0 0 8.68 9.534">                                <g id="Icon_feather-lock" data-name="Icon feather-lock" transform="translate(-4 -2.5)">
+                        <path id="Path_68820" data-name="Path 68820" d="M5.353,16.5h5.973a.853.853,0,0,1,.853.853V20.34a.853.853,0,0,1-.853.853H5.353A.853.853,0,0,1,4.5,20.34V17.353A.853.853,0,0,1,5.353,16.5Z" transform="translate(0 -9.66)" fill="none" stroke="#0E1817" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                        <path id="Path_68821" data-name="Path 68821" d="M10.5,6.84V5.133a2.133,2.133,0,0,1,4.267,0V6.84" transform="translate(-4.293)" fill="none" stroke="#11364c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                        </g>
+                    </svg>
+                    Change Password</a>
+                <a mat-menu-item>
+                    <svg style="transform: scale(1);" class="mr-2 prof" xmlns="http://www.w3.org/2000/svg" width="9.531" height="9.531" viewBox="0 0 9.531 9.531">
+                        <g id="Icon_feather-log-out" data-name="Icon feather-log-out" transform="translate(-4 -4)">
+                        <path id="Path_68815" data-name="Path 68815" d="M7.344,13.031h-1.9a.948.948,0,0,1-.948-.948V5.448A.948.948,0,0,1,5.448,4.5h1.9" fill="none" stroke="#11364c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                        <path id="Path_68816" data-name="Path 68816" d="M24,15.24l2.37-2.37L24,10.5" transform="translate(-13.339 -4.104)" fill="none" stroke="#0E1817" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                        <path id="Path_68817" data-name="Path 68817" d="M19.188,18H13.5" transform="translate(-6.156 -9.234)" fill="none" stroke="#0E1817" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                        </g>
+                    </svg>
+                    Log Out</a>
+            </mat-menu>
+        </ng-container>
+    </div>
+</div>

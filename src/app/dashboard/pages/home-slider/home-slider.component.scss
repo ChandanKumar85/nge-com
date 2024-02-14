@@ -1,0 +1,50 @@
+mat-card.header {
+    padding:10px 15px;
+    background: #f8f8f8;
+    border-radius: 0;
+    h2 {
+        font-size: 22px;
+        font-weight: 400;
+    }
+}
+.all-users { width: 49%; }
+mat-card.header_user {
+    padding:10px;
+    background: #f8f8f8;
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        li {
+            font-weight: 500; 
+            width: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            &.title {  text-transform: capitalize; }
+            &.action { width: auto; justify-content: space-between;
+                button {
+                    width: 35px;
+                    height: 35px;
+                    line-height: 35px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    mat-icon {
+                        width: 22px;
+                        height: 22px;
+                        font-size: 22px;
+                        position: relative;
+                        top: -1px;
+                    }
+                }
+            }
+        }
+        &.list {
+            li { font-weight: 400;}
+        }
+    }
+}

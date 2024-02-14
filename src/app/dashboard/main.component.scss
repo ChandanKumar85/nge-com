@@ -1,0 +1,54 @@
+.example-container {
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: #f8f8f8;
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    padding:0px;
+    width: 260px;
+}
+
+.header {
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 0 5px #ccc;
+    position: relative;
+    z-index: 2;
+    .logo {
+        max-width: 140px;
+        float: left;
+    }
+    .example-full-width { 
+        width: 550px;
+        @media(max-width:767px){
+            width: auto;
+            max-width: 340px;
+        }
+    }
+}
+
+.containerfluid {
+    background: #fff;
+    border-radius: 10px;
+    margin: 20px;
+    height: calc(100vh - 100px);
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.title-menu {
+    box-shadow: none;
+    padding: 0;
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 600;
+}

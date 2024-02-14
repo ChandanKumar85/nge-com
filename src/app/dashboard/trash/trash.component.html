@@ -1,0 +1,35 @@
+<div class="trash-list">
+    <mat-card class="header d-flex align-items-center mb-4">
+        <h2>Trash</h2>
+    </mat-card>
+    <ng-container *ngIf="!spinner">
+        <mat-card class="header sub_title">
+            <ul>
+                <li class="img-sec">Product</li>
+                <li class="title">
+                    <span>Product Title</span>
+                </li>
+                <li class="action">
+                    No. Products : {{products.length}}
+                </li>
+            </ul>
+        </mat-card>
+        <div class="body-scroll">
+            <mat-card *ngFor="let prod of products;">
+                <ul>
+                    <li class="img-sec"><img [src]="prod.productImg" width="120" height="120" [alt]="prod.title"> </li>
+                    <li class="title">{{prod.title}} <strong>({{prod.numOfItem}})</strong></li>
+                    <li class="action">
+                        <button mat-button color="primery">
+                            Move to Products
+                        </button>
+                    </li>
+                </ul>
+            </mat-card>
+        </div>
+    </ng-container>
+    <div class="ht-100 d-flex justify-content-center align-items-center" *ngIf="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+

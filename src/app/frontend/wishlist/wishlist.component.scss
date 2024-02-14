@@ -1,0 +1,72 @@
+.cart-box { 
+    // height: 55vh;
+    .cart-img { max-width: 200px;}
+    h3 { font-weight: 400;}
+    p { font-size: 12px; font-weight: 400; margin-bottom: 20px;}
+    .button { min-width: 180px;}
+}
+table { width: 100%;
+    thead {
+        background-color: #e6e8ff;
+        th { font-weight: 500; font-size: 14px; text-align: left; padding: 10px;}
+    }
+    tbody {
+        tr {
+            td { font-weight: 400; padding: 10px;
+                h2 { font-size: 14px; line-height: 18px; }
+                p { margin: 0;}
+                img { max-height: 80px;}
+                .select-number-item {
+                    width: 100%;
+                    max-width: 100px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    span.value {
+                        width: 40px;
+                        height: 30px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #f1f1f1;
+                        border-radius: 3px;
+                        font-size: 14px;
+                        font-weight: 400;
+                    }
+                    button {
+                        width: 30px;
+                        height: 30px;
+                        line-height: 14px;
+                        .mat-icon {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+            &:nth-child(even) {
+                background: #f8f8f8;
+            }
+        }
+    }
+    tfoot {
+        background-color: #e6e8ff;
+        td {
+            font-weight: 500;
+            font-size: 22px;
+            padding: 15px 10px;
+            &.label {
+                text-align: right;
+            }
+        }
+    }
+}
+.ratting {
+    padding: 0;
+    height: 25px;
+    line-height: 25px;
+    color: green;
+    background: #eef5ee;
+    padding-right: 5px !important;
+    min-width: 50px;
+    margin-left: 5px;
+}

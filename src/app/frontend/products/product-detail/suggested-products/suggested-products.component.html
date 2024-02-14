@@ -1,0 +1,11 @@
+<div class="new_arrivals">
+    <h2>You might also like</h2>
+    <div class="desc_title">Add our products to weekly lineup</div>
+</div>
+<div class="thumbnails">
+    <swiper [config]="config" class="mySwiper suggested-products">
+        <ng-template swiperSlide *ngFor="let prod of productData; let i = index">
+            <app-product-card [productData]="prod" class="no-shadow"></app-product-card>
+        </ng-template>
+    </swiper>
+</div>

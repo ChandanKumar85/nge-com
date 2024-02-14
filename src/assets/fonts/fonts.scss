@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'latoregular';
+    src: url('./lato-regular-webfont.woff2') format('woff2'),
+         url('./lato-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'latolight';
+    src: url('./lato-light-webfont.woff2') format('woff2'),
+         url('./lato-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$latoregular_fontfamily : 'latoregular';
+$latolight_fontfamily : 'latolight';
+
+$fs_13 : 13px;
+$fs_14 : 14px;
+$fs_16 : 16px;
+$fs_18 : 18px;
+$fs_20 : 20px;
+$fs_22 : 22px;
+$fs_24 : 24px;
+$fs_26 : 26px;
+$fs_28 : 28px;
+$fs_30 : 30px;
+
+:root {
+    --golden    : #c29958;
+    --white     : #ffffff;
+    --black     : #1a1a1a;
+    --lightblack: #555555;
+    --ferozi    : #7bbbdd;
+    --red       : #f44336;
+    --green     : #46cb32;
+    --lightgreen: #e6f3ee;
+    --gray      : #f7f7f7;
+    --graydark  : #bcbcbc;
+    --lightGray : #dfdfdf;
+}

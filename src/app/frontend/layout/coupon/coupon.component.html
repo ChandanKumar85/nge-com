@@ -1,0 +1,18 @@
+<div class="have-coupon"><strong>Do you have a coupon? 
+    <a href="javascript:void(0)" (click)="applyCoupon()" class="showcoupon">Click here</a> 
+    to apply for additional discount.</strong>
+</div>
+<div class="coupon-code-area" *ngIf="applyCouponCheck">
+    <p>If you have a coupon code, please apply it below.</p>
+    <form>
+        <div class="d-flex">
+            <div class="password">
+                <input [type]="hide ? 'text' : 'password'" class="coupon-input" matInput placeholder="Coupon code">
+                <a mat-icon-button (click)="hide = !hide">
+                    <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </a>
+            </div>
+            <button class="sibmit" mat-button>Apply</button>
+        </div>
+    </form>
+</div>

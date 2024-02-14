@@ -1,0 +1,96 @@
+.product-list { position: relative;
+    mat-card { padding:5px 10px;
+        &:not(:last-child) { margin-bottom: 5px;}
+    }
+    mat-card.header {
+        padding:10px;
+        background: #f8f8f8;
+        border-radius: 0;
+        h2 {
+             font-size: 22px;
+             font-weight: 400;
+        }
+        ul {
+            li {font-weight: 500;}
+            li.action { justify-content: space-between; padding-left:0px;}
+            li.title { 
+                justify-content: space-between;
+                position: relative;
+                .search-by {
+                   position: absolute;
+                   right: 0;
+                   top: 0;
+                   select {
+                       height: 40px;
+                       width: 260px;
+                       border: 1px solid #ccc;
+                       border-radius: 4px;
+                       padding: 0 10px;
+                       background: #fff;
+                       font-size: 16px;
+                   }
+                }
+            }
+        }
+        &.sub_title {
+            background: none;
+            box-shadow: none;
+            border-bottom: 1px solid #ccc;
+        }
+    }
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        li:not(:last-child) { margin-right: 15px;}
+        li {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        li.status {
+            max-width: 45px;
+        }
+        li.id-v {
+            max-width: 40px;
+        }
+        li.img-sec {
+            max-width: 80px;
+            height: 40px;
+            border-radius: 5px;
+            width: 100%;
+            // justify-content: flex-start;
+            img {
+                max-width: 100%;
+                width: auto;
+                max-height: 40px;
+                height: auto;
+            }
+        }
+        li.title {
+            justify-content: space-between;
+            a {
+                text-decoration: none;
+                color: #333;
+            }
+        }
+        li.action {
+            max-width: 250px;
+            justify-content: space-between;
+            a, button {
+                display: flex;
+                align-items: center;
+                padding-left: 5px;
+                padding-right: 10px;
+                font-size: inherit;
+            }
+            ::ng-deep {
+                mat-icon { font-size: 18px; height: 16px; line-height: 16px;}
+            }
+        }
+    }
+}

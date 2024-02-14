@@ -1,0 +1,97 @@
+<div id="footer">
+    <div class="footer_top">
+        <div class="container">
+            <div class="footer-link-area">
+                <div class="links footer_block">
+                    <div class="footer_about_us">
+                        <div class="logo_footer">
+                            <a href="#"><img src="../../../../assets/logos/logo.jpg" width="112" height="33" alt="shopnow"></a>
+                        </div>
+                        <address class="contact-footer">
+                            <div *ngIf="!spinner" [innerHTML]="pageData.description"></div>
+                            <!-- <p class="address add">
+                                <samp><i class="fa fa-map-marker" aria-hidden="true"></i></samp> <span>4710-4890
+                                    Breckinridge USA</span>
+                            </p>
+                            <p class="email add">
+                                <samp><i class="fa fa-envelope-o" aria-hidden="true"></i></samp> <a
+                                    href="#">demo@posthemes.com</a>
+                            </p>
+                            <p class="phone add">
+                                <samp><i class="fa fa-phone" aria-hidden="true"></i></samp> <span>1-1001-234-5678</span>
+                            </p> -->
+                        </address>
+                    </div>
+                </div>
+                <div class="links footer_block">
+                    <h3 class="hidden-sm-down">Categories</h3>
+                    <ul class="footer_list">
+                        <li *ngFor="let category of categories">
+                            <a class="cms-page-link" href="/" routerLink="{{category.category}}">
+                                {{category.title}}
+                            </a>
+                        <li>
+                    </ul>
+                </div>
+                <div class="links footer_block">
+                    <h3 class="hidden-sm-down">Information</h3>
+                    <ul class="footer_list">
+                        <li>
+                            <a class="cms-page-link" href="/" routerLink="/about-us">
+                                About us
+                            </a>
+                        </li>
+                        <li>
+                            <a class="cms-page-link" href="/" routerLink="/privacy-policy">
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a class="cms-page-link" href="/" routerLink="/terms-conditions">
+                                Terms & Conditions
+                            </a>
+                        </li>
+                        <li>
+                            <a class="cms-page-link" href="/" routerLink="/contact-us">
+                                Contact us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row_bottom footer-link-area">
+                <div class="links footer_block">
+                    <div class="newsletter">
+                        <h3>Sign Up To Newsletter</h3>
+                        <div class="newsletter-form">
+                            <form>
+                                <input type="email" matInput placeholder="Your email address" value="">
+                                <button class="sibmit" mat-button>Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="links footer_block">
+                    <h3 class="hidden-sm-down mb-0 mr-2">Follow Us</h3>
+                    <ul class="footer_list_social">
+                        <li class="facebook"><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"
+                                    aria-hidden="true"></i></a></li>
+                        <li class="twitter"><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"
+                                    aria-hidden="true"></i></a></li>
+                        <li class="youtube"><a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube-play"
+                                    aria-hidden="true"></i></a></li>
+                        <li class="instagram"><a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram"
+                                    aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container d-flex justify-content-space-between align-items-center">
+            <p>All rights reserved &copy; 2023 ShopNow. Contact <a href="mailto:info@shopnow.in" target="_blank">info@shopnow.in</a> for more information</p>
+            <div class="payment"><img src="../../../../assets/icons/payment.png" alt="payment option" width="375"
+                height="30" class="img-responsive"></div>
+        </div>
+    </div>
+</div>

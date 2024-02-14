@@ -1,0 +1,60 @@
+mat-card.header {
+    padding:10px 15px;
+    background: #f8f8f8;
+    border-radius: 0;
+    h2 {
+        font-size: 22px;
+        font-weight: 400;
+    }
+}
+.example-full-width {
+    width: 100%;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 10px;
+}
+.alert { 
+    position: absolute;
+    bottom: -5px;
+}
+.all-users { width: 49%; }
+.add-user { width: 49%; }
+
+mat-card.header-user {
+    padding:10px;
+    background: #f8f8f8;
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        li {
+            font-weight: 500; 
+            width: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            &.title { max-width: 40%; text-transform: capitalize; }
+            &.action { width: auto; justify-content: space-between;
+                button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    mat-icon {
+                        width: 22px;
+                        height: 22px;
+                        font-size: 20px;
+                        position: relative;
+                        top: -2px;
+                    }
+                }
+            }
+        }
+        &.list {
+            li { font-weight: 400;}
+        }
+    }
+}

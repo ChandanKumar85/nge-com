@@ -1,0 +1,200 @@
+<div class="container mt-4 pt-2" *ngIf="!spinner">
+    <div class="cart_box_area" *ngIf="totalItem != 0">
+        <section class="cart_list_box">
+            <h2 class="mb-2">
+                <span>My Cart ({{totalItem}})</span>
+            </h2>
+            <mat-card class="product-detail-view cart_view" *ngFor="let item of products; let i = index">
+                <figure>
+                    <a [routerLink]="['/product',item.id]"><img src="{{item.productImg}}" width="" height=""
+                            alt="{{item.title}}"></a>
+                </figure>
+                <div class="product-line-grid-body">
+                    <h2 class="mb-0">{{item.title}}</h2>
+                    <div class="price-box">
+                        <div class="sell-price text-right" *ngIf="item.discount; else subtotalPrice">
+                            {{((item.price) - ((item.price*item.discount)/100))*item.quantity | currency:'INR'}}
+                            <button mat-icon-button aria-label="info" [matMenuTriggerFor]="menuD">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                    <path fill="#ccc"
+                                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.033 16.01c.564-1.789 1.632-3.932 1.821-4.474.273-.787-.211-1.136-1.74.209l-.34-.64c1.744-1.897 5.335-2.326 4.113.613-.763 1.835-1.309 3.074-1.621 4.03-.455 1.393.694.828 1.819-.211.153.25.203.331.356.619-2.498 2.378-5.271 2.588-4.408-.146zm4.742-8.169c-.532.453-1.32.443-1.761-.022-.441-.465-.367-1.208.164-1.661.532-.453 1.32-.442 1.761.022.439.466.367 1.209-.164 1.661z" />
+                                </svg>
+                            </button>
+                            <mat-menu #menuD="matMenu" class="price-details">
+                                <h5>Price details</h5>
+                                <ul>
+                                    <li><strong>Maximum Retail Price
+                                            <small>(incl. of all taxes)</small></strong>
+                                        <del>{{item.price | currency:'INR'}}</del>
+                                    </li>
+                                    <li><strong>Selling Price</strong>
+                                        <span>
+                                            <span class="sell-price" *ngIf="item.discount; else originalPricePop">
+                                                {{(item.price)- ((item.price*item.discount)/100) | currency:'INR'}}
+                                            </span>
+                                            <ng-template #originalPricePop>
+                                                <span class="sell-price">{{item.price | currency:'INR'}}</span>
+                                            </ng-template>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <p *ngIf="item.discount">
+                                    <small>
+                                        Overall you save {{ ((item.price*item.discount)/100) |
+                                        currency:'INR' }} on {{item.discount}}% discount on this product
+                                    </small>
+                                </p>
+                            </mat-menu>
+                        </div>
+                        <ng-template #subtotalPrice>
+                            <div class="sell-price">
+                                <span>{{(item.price)*item.quantity | currency:'INR'}}</span>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="product-line-grid-right">
+                    <div class="select-number-item">
+                        <button mat-icon-button (click)="decrease(item.id, item.quantity)">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <span class="value">{{item.quantity}}</span>
+                        <button mat-icon-button (click)="increase(item.id, item.quantity)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <div class="d-flex prod-satus">
+                        <button mat-icon-button color="primary" aria-label="Save for Later" title="Save for Later"
+                            (click)="saveForLater(item)">
+                            <img src="../../../assets/icons/tag_icon.svg" width="35" alt="">
+                        </button>
+                        <button mat-icon-button color="warn" aria-label="Delete Item" title="Delete Item"
+                            (click)="removeCartValue(item.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-card>
+            <a routerLink="/products" mat-flat-button color="primary" class="continue_shopping mt-3">
+                Continue shopping
+            </a>
+        </section>
+        <section class="order_summery">
+            <div class="checkout-order-review">
+                <div class="wd-table-wrapper">
+                    <table>
+                        <tbody>
+                            <tr class="cart_item" *ngFor="let item of products; let i = index">
+                                <td class="product-name">
+                                    <span class="pisol_product_name">
+                                        {{((item.price) - ((item.price*item.discount)/100))}} x
+                                        {{item.quantity}} Item<span *ngIf="item.quantity > 1">s</span></span>
+                                </td>
+                                <td class="product-total">
+                                    {{((item.price) - ((item.price*item.discount)/100))*item.quantity | currency:'INR'}}
+                                </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    <span class="pisol_product_name">Shipping Charge</span>
+                                </td>
+                                <td class="product-total">
+                                    Free
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="cart-subtotal">
+                                <th class="product-name">Subtotal</th>
+                                <td><strong>{{grandTotal | currency:'INR'}}</strong></td>
+                            </tr>
+                            <tr class="order-total">
+                                <th class="product-name">Grand Total</th>
+                                <td><strong>{{grandTotal | currency:'INR'}}</strong> </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <app-coupon></app-coupon>
+                <button type="button" (click)="loginState(isLogedIn)" class="place_order" mat-button>Proceed to checkout</button>
+            </div>
+            <!-- <div class="blockreassurance_product">
+                <div>
+                    <img class="svg" src="../../../../assets/icons/ic_verified_user_black_36dp_1x.png">
+                    <p class="block-title">Free Shipping</p>
+                </div>
+                <div>
+                    <img class="svg" src="../../../../assets/icons/ic_local_shipping_black_36dp_1x.png">
+                    <p class="block-title">Easy Returns</p>
+                </div>
+                <div>
+                    <img class="svg" src="../../../../assets/icons/ic_swap_horiz_black_36dp_1x.png">
+                    <p class="block-title">Lowest Price Guarantee</p>
+                </div>
+            </div> -->
+        </section>
+    </div>
+    <ng-container *ngIf="totalItem == 0">
+        <div class="d-flex align-items-center justify-content-center cart-box mt-3 mb-3">
+            <div class="d-flex flex-direction-column align-items-center">
+                <img src="../../assets/icons/cart.jpeg" class="cart-img" width="250" alt="cart view">
+                <h3 class="mt-3 mb-0">Missing Cart items?</h3>
+                <p>Login to see the items you added previously</p>
+                <div class="d-flex mt-2">
+                    <a routerLink="/products" mat-button class="readmore" color="primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#ffffff"
+                                d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
+                        </svg>
+                        Shop Now
+                    </a>
+                    <ng-container *ngIf="!isLogedIn">
+                        <button style="min-width: 24px;" mat-button>OR</button>
+                        <a routerLink="/login" mat-button color="success" color="primary" class="readmore" (click)="loginState(isLogedIn)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="22" height="22"
+                                viewBox="0 0 24 24">
+                                <path fill="#ffffff"
+                                    d="M10 2v2h12v16h-12v2h14v-20h-14zm0 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z" />
+                            </svg>
+                            Login
+                        </a>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
+
+<app-save-for-later class="wd-100 bottom_sheet_cart"></app-save-for-later>
+
+<div class="section_spacing">
+    <div class="container">
+        <div class="info-detail">
+            <div class="info info1">
+                <img src="../../../assets/icons/airplane_air_airport.svg" alt="Free Shipping">
+                <h4>Free Shipping</h4>
+                <span>Free shipping on all US order or order above $200</span>
+            </div>
+            <div class="info info2">
+                <img src="../../../assets/icons/help_lifesaver.svg" alt="Support 24/7">
+                <h4>Support 24/7</h4>
+                <span>Contact us 24 hours a day, 7 days a week</span>
+            </div>
+            <div class="info info3">
+                <img src="../../../assets/icons/return-svgrepo-com.svg" alt="30 Days Return">
+                <h4>30 Days Return</h4>
+                <span>Simply return it within 30 days for an exchange</span>
+            </div>
+            <div class="info info4">
+                <img src="../../../assets/icons/atm card_credit.svg" alt="100% Payment Secure">
+                <h4>100% Payment Secure</h4>
+                <span>We ensure secure payment with PEV</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="ht-100 d-flex justify-content-center align-items-center" *ngIf="spinner">
+    <mat-spinner></mat-spinner>
+</div>

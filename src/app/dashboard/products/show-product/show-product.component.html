@@ -1,0 +1,82 @@
+<ng-container *ngIf="!spinner">
+    <div class="d-flex align-items-center justify-content-space-between mb-2">
+        <div class="d-flex align-items-center">
+            <button mat-icon-button (click)="goBack()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <h1 class="mb-0">{{product.title}}</h1>
+        </div>
+        <button mat-flat-button color="warn" (click)="dialogModel()" class="delete-btn">
+            <mat-icon>delete_outline</mat-icon> Trash
+        </button>
+    </div>
+    <div class="detail-page">
+        <div class="left-part">
+            <mat-card>
+                <figure>
+                    <img [src]="product.productImg" [alt]="product.title">
+                </figure>
+            </mat-card>
+        </div>
+        <div class="right-part">
+            <div class="price-box m-0">
+                <div class="sell-price"> {{product.price | currency:'INR'}} </div>
+                <table class="table">
+                    <tr>
+                        <th>Product Show Or Not</th>
+                        <td>
+                            <span class="visiable-field-p" *ngIf="product.productEnable">Visiable In Front-End</span>
+                            <span class="hidden-field-p" *ngIf="!product.productEnable">Hidden In Front-End</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>SKU Number</th>
+                        <td>{{product.skuNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Category</th>
+                        <td>{{product.category}}</td>
+                    </tr>
+                    <tr>
+                        <th>Discount</th>
+                        <td>{{product.discount}}%</td>
+                    </tr>
+                    <!-- <tr>
+                        <th>Delivery Charges</th>
+                        <td>{{product.delivery}}</td>
+                    </tr> -->
+                    <tr>
+                        <th>Number of Items</th>
+                        <td>{{product.numOfItem}}</td>
+                    </tr>
+                    <!-- <tr>
+                        <th>Quantity</th>
+                        <td>{{product.quantity}}</td>
+                    </tr> -->
+                </table>
+            </div>
+            <h2 class="mt-2 mb-0">Description</h2>
+            <div [innerHTML]="product.description"></div>
+        </div>
+    </div>
+</ng-container>
+<div class="ht-100 d-flex justify-content-center align-items-center" *ngIf="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #confDialog>
+    <mat-dialog-content>
+        <button mat-icon-button class="close-btn" matDialogClose>
+            <mat-icon>close</mat-icon>
+        </button>
+        <h2 matDialogTitle class="text-center">Are you sure, Do you want to move in Trash?</h2>
+        <p class="d-flex">
+            <img src="{{product.productImg}}" width="" height="100" class="mr-2" alt="{{product.title}}">
+            {{product.title}}
+        </p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-stroked-button matDialogClose class="gray-btn">No</button>
+        <button mat-flat-button matDialogClose (click)="deleteProd(product.id)" color="warn">Yes</button>
+    </mat-dialog-actions>
+</ng-template>

@@ -1,0 +1,50 @@
+.slide {
+    position: relative;
+    img {
+        float: left;
+    }
+    .info {
+        position: absolute;
+        top: 20vh;
+        max-width: 650px;
+        h2 {
+            font-size: 4rem;
+            color: var(--lightblack);
+            font-weight: 500;
+            line-height: normal;
+            margin: 0;
+        }
+        p {
+            font-size: 1vw;
+            color: var(--lightblack);
+            font-weight: 400;
+            line-height: 1vw;
+            margin: 1.5vw 0 0;
+        }
+        .readmore {
+            margin-top: 5vh !important;
+        }
+    }
+}
+
+
+::ng-deep {
+    .slider-area {
+        .swiper-pagination {
+            position: absolute;
+            width: 100%;
+            z-index: 99;
+            display: flex;
+            bottom: 30px;
+            align-items: center;
+            justify-content: center;
+            .swiper-pagination-bullet { border: 2px solid var(--white); background: none; width: 13px; height: 13px; cursor: pointer; margin: 0 5px;
+                border-radius: 50px;
+                &.swiper-pagination-bullet-active {
+                    border-color: var(--golden);
+                    background-color: var(--golden);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,122 @@
+<app-home-slider></app-home-slider>
+<div class="section_spacing">
+    <div class="container">
+        <div class="info-detail">
+            <div class="info info1">
+                <img src="../../../assets/icons/airplane_air_airport.svg" alt="Free Shipping">
+                <h4>Free Shipping</h4>
+                <span>Free shipping on all US order or order above $200</span>
+            </div>
+            <div class="info info2">
+                <img src="../../../assets/icons/help_lifesaver.svg" alt="Support 24/7">
+                <h4>Support 24/7</h4>
+                <span>Contact us 24 hours a day, 7 days a week</span>
+            </div>
+            <div class="info info3">
+                <img src="../../../assets/icons/return-svgrepo-com.svg" alt="30 Days Return">
+                <h4>30 Days Return</h4>
+                <span>Simply return it within 30 days for an exchange</span>
+            </div>
+            <div class="info info4">
+                <img src="../../../assets/icons/atm card_credit.svg" alt="100% Payment Secure">
+                <h4>100% Payment Secure</h4>
+                <span>We ensure secure payment with PEV</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section_spacing">
+    <div class="container">
+        <div class="banner-card">
+            <div class="banner-box">
+                <div class="banner-inner-box">
+                    <img src="../../../assets/1_1.jpg" alt="Beautiful Wedding">
+                    <div class="txt_cms">
+                        <h3>Beautiful Wedding</h3>
+                        <h2>Beautiful Wedding Rings</h2>
+                        <a href="#">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-box">
+                <div class="banner-inner-box">
+                    <img src="../../../assets/2_1.jpg" alt="earring">
+                    <div class="txt_cms">
+                        <h3>earring</h3>
+                        <h2>Tangerine Floral Earring</h2>
+                        <a href="#">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-box">
+                <div class="banner-inner-box">
+                    <img src="../../../assets/3_1.jpg" alt="new arrivals">
+                    <div class="txt_cms">
+                        <h3>new arrivals</h3>
+                        <h2>Pearl Necklaces</h2>
+                        <a href="#">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-box">
+                <div class="banner-inner-box">
+                    <img src="../../../assets/4_1.jpg" alt="Diamond">
+                    <div class="txt_cms">
+                        <h3>new design, Diamond</h3>
+                        <h2>Jewelry</h2>
+                        <a href="#">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section_spacing">
+    <div class="add_section">
+        <div class="container">
+            <figure>
+                <a href="/" routerLink="/"><img src="../../../assets/Mens-Jacket.jpg" width="472" height="245" alt="Mens Jacket"></a>
+            </figure>
+            <article>
+                <h2>Discover a Beautiful</h2>
+                <h3>for you with our new best leather jackets</h3>
+                <p>shoppingNow.store is an online leather jackets store that allows you to shop for a perfect jacket according to various events or outfits. Not a single one of our customers leaves disappointed by not being able to find a jacket of their choice here.</p>
+            </article>
+        </div>
+    </div>
+</div>
+<div class="section_spacing">
+    <div class="container">
+        <div class="new_arrivals_area">
+            <div class="new_arrivals">
+                <h2>New Arrivals</h2>
+                <div class="desc_title">Add new arrivals to weekly lineup</div>
+            </div>
+            <mat-tab-group animationDuration="0ms" mat-align-tabs="center" (selectedTabChange)="onChange($event)">
+                <mat-tab *ngFor="let pro of tabData" label="{{pro.label}}">
+                    <section *ngIf="!spinner">
+                        <div class="grid_view_new">
+                            <div class="box_new" *ngFor="let prod of products | slice:0:4 ; let i = index">
+                                <app-product-card [productData]="prod" class="no-shadow">
+                                    <!-- <button mat-icon-button class="add-to-cart" color="primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                            <path fill="#7e7e7e"
+                                                d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
+                                        </svg>
+                                    </button> -->
+                                    <button mat-icon-button class="favorite" (click)="loginState(isLogedIn)">
+                                        <mat-icon>favorite</mat-icon>
+                                    </button>
+                                </app-product-card>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="ht-100 d-flex justify-content-center align-items-center" *ngIf="spinner">
+                        <img src="../../../assets/icons/ajax-loader.gif" width="" height="" alt="Loader">
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+            
+        </div>
+    </div>
+</div>

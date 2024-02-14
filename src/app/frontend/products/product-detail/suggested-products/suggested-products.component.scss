@@ -1,0 +1,5 @@
+::ng-deep .suggested-products {
+    .owl-item {
+        max-width: calc(25% - 15px) !important;
+    }
+}

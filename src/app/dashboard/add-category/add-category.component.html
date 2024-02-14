@@ -1,0 +1,66 @@
+<ng-container *ngIf="!spinner">
+    <mat-card class="header d-flex align-items-center">
+        <h2>Category</h2>
+    </mat-card>
+    <div class="body-scroll d-flex justify-content-space-between mt-2">
+        <div class="all-users">
+            <mat-card class="ml-1 mb-1 header-user">
+                <ul class="">
+                    <li class="title">Name Name</li>
+                    <li class="action">Action</li>
+                </ul>
+            </mat-card>
+            <mat-card class="ml-1 mb-1 header-user" *ngFor="let cate of category">
+                <ul class="list">
+                    <li class="title">
+                        <mat-checkbox class="mr-2" matTooltip="{{cate.productEnable == true ? 'Active' : 'Inactive'}}"
+                            matTooltipPosition="left" matTooltipClass="matTooltip" [checked]="!cate.productEnable"
+                            (click)="updateCategoryStat(cate.id, !cate.productEnable)" color="primary">
+                        </mat-checkbox>
+                        {{cate.category}}
+                    </li>
+                    <li class="action">
+                        <button mat-icon-button mat-stroked-button color="warn" class="ml-2"
+                            matTooltip="Delete Category" (click)="deleteCategory(cate)" matTooltipPosition="right">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </li>
+                </ul>
+            </mat-card>
+        </div>
+
+        <div class="add-user">
+            <mat-card class="mr-1">
+                <h2 class="m-0 mb-2">Add Category</h2>
+                <form [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width">
+                            <input matInput type="text" placeholder="Title" formControlName="title">
+                            <!-- [ngClass]="{ 'is-invalid': submitted && f['title'].errors }" -->
+                        </mat-form-field>
+                        <div *ngIf="submitted && f['title'].errors" class="alert alert-danger">
+                            <div *ngIf="f['title'].errors['required']">Title is required</div>
+                            <div *ngIf="f['title'].errors['minlength']">Title should be 3 character.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width mb-0">
+                            <input type="text" class="mb-0" matInput placeholder="Enter Category Name"
+                                formControlName="category"
+                                [ngClass]="{ 'is-invalid': submitted && f['category'].errors }">
+                        </mat-form-field>
+                        <div *ngIf="submitted && f['category'].errors" class="alert alert-danger">
+                            <div *ngIf="f['category'].errors['required']">This field is required.</div>
+                            <div *ngIf="f['category'].errors['minlength']">User name should be minmum 3 letters.</div>
+                        </div>
+                    </div>
+                    <button mat-flat-button color="primary" type="submit"
+                        class="mt-1">Submit<span *ngIf="btnSpinner">...</span></button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</ng-container>
+<div class="ht-100 d-flex justify-content-center align-items-center" *ngIf="spinner">
+    <mat-spinner></mat-spinner>
+</div>

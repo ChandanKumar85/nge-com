@@ -1,0 +1,46 @@
+<mat-card class="header d-flex align-items-center justify-content-between">
+    <h2 class="m-0 flex-1">Home Banner</h2>
+    <button color="primary" mat-flat-button (click)="addSliderDialog()">Add Slider</button>
+</mat-card>
+<div class="body-scroll d-flex justify-content-space-between mt-2">
+    <div class="all-users">
+        <mat-card class="ml-1 mb-1 header_user">
+            <ul class="">
+                <li class="title">Images</li>
+                <li class="action">Action</li>
+            </ul>
+        </mat-card>
+        <mat-card class="ml-1 mb-1 header_user" *ngFor="let item of sliderData">
+            <ul class="list">
+                <li class="title">
+                    <mat-checkbox class="mr-2" matTooltipPosition="left" matTooltipClass="matTooltip" color="primary">
+                    </mat-checkbox>
+                    <img src="{{item.sliderImage}}" width="80" height="" alt="img">
+                    {{item.title}}
+                </li>
+                <li class="action">
+                    <button mat-icon-button mat-stroked-button color="warn" class="ml-2" (click)="deleteDialog(item)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button mat-stroked-button class="ml-2" (click)="editSliderDialog(item)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </li>
+            </ul>
+        </mat-card>
+    </div>
+</div>
+
+<ng-template #confDialog>
+    <mat-dialog-content>
+        <button mat-icon-button class="close-btn" matDialogClose>
+            <mat-icon>close</mat-icon>
+        </button>
+        <p class="text-center">Are you sure you want to delete?</p>
+        <h2 class="text-center">{{dilogData.title}}</h2>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-stroked-button matDialogClose class="gray-btn">No</button>
+        <button mat-flat-button color="warn" (click)="deleteSlider(dilogData.id)">Yes</button>
+    </mat-dialog-actions>
+</ng-template>

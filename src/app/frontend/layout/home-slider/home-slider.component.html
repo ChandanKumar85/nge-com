@@ -1,0 +1,17 @@
+<div class="slider-area">
+    <swiper [slidesPerView]="1" [spaceBetween]="10" [loop]="true" [pagination]="{ clickable: true }"
+        [scrollbar]="false" [navigation]="true">
+        <ng-template swiperSlide *ngFor="let item of sliderData">
+            <div class="slide">
+                <div class="container">
+                    <div class="info">
+                        <h2 class="transition_slide_0 animated fadeInDown">{{item.title}}</h2>
+                        <p class="transition_slide_2 animated fadeInRight">{{item.description}}</p>
+                        <a [routerLink]="item.URL" mat-button class="readmore transition_slide_3 animated zoomIn">Shop Now</a>
+                    </div>
+                </div>
+                <img src="{{item.sliderImage}}" width="1920" height="670" alt="{{item.title}}">
+            </div>
+        </ng-template>
+    </swiper>
+</div>
